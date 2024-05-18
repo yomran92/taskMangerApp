@@ -16,10 +16,7 @@ class AppStateModel with ChangeNotifier {
     _user = user;
   }
 
-  Future<void> saveLogin(String ID, String email, String phone, String name,
-      String password) async {
-    notifyListeners();
-  }
+
 
   Future<void> logOut() async {
     sl<HiveParamter>().hive.box(HiveKeys.userBox).clear();
