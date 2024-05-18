@@ -14,4 +14,6 @@ class StringLbl {
   static String save = 'Save';
   static String add = 'Add';
   static String reload = 'reload';
+  static String task = 'Task';
+  static String localTask = 'not able to see detail its virtual task';
 }

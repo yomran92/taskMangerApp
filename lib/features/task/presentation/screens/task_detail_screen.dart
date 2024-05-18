@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:todoapp/core/string_lbl.dart';
 import 'package:todoapp/features/task/domain/entities/get_task_entity.dart';
 import 'package:todoapp/features/task/presentation/components/task_detail_widget.dart';
 
@@ -21,7 +22,7 @@ class TaskDetailScreen extends StatelessWidget {
           icon: Icon(Icons.arrow_back, color: Styles.colorTextWhite),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text("task",
+        title: Text(StringLbl.task,
             style: Styles.w700TextStyle()
                 .copyWith(fontSize: 20.sp, color: Styles.colorTextWhite)),
         actions: [

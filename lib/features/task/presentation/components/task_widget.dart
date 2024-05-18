@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:todoapp/core/string_lbl.dart';
 import 'package:todoapp/core/styles.dart';
 import 'package:todoapp/core/widget/custom_text.dart';
 import 'package:todoapp/features/task/data/models/param/delete_task_param.dart';
 
+import '../../../../core/utils/helper_function.dart';
 import '../../../../service_locator.dart';
 import '../../domain/entities/get_task_entity.dart';
 import '../bloc/task_bloc.dart';
@@ -20,14 +22,20 @@ class TaskWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (allowEdite)
+        if((task!.id??0) >150){
+          HelperFunction.showToast(StringLbl.localTask);
+
+        }
+        else
+        if (allowEdite) {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (BuildContext context) => TaskDetailScreen(
+                  builder: (BuildContext context) =>
+                      TaskDetailScreen(
                         task: task,
                       )));
-      },
+        }      },
       child: Card(
         elevation: 3,
         child: Container(
