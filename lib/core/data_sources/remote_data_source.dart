@@ -106,7 +106,7 @@ abstract class RemoteDataSource {
 
   initTokenAndHeaders() {
     // token header
-    // token = sl<AppStateModel>().user!.token;
+    token = sl<AppStateModel>().user!.token;
     headers.remove("Authorization");
 
     print('token :$token');
