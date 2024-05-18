@@ -3,40 +3,26 @@ import 'package:todoapp/features/account/data/remote/models/responses/user_model
 import '../../../../domain/entities/login_entity.dart';
 
 class LogInModel {
-  late bool success;
-  late String? message;
- late UserModel userModel;
+  late UserModel userModel;
 
-  LogInModel({required this.success,required this.userModel,this.message});
+  LogInModel({required this.userModel});
 
   LogInModel.fromJson(Map<String, dynamic> json) {
-    success = json['AlCode'] == 0 ? true : false;
-    if (success) {
-      userModel=json['user'];
-    }
-    message = json['Mess'];
+    userModel = UserModel.fromJson(json);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['AlCode'] = this.success;
-    data['Mess'] = this.message;
-    data['user'] = this.userModel;
 
     return data;
   }
 
-  @override
   LogInModel fromJson(Map<String, dynamic> json) {
     return LogInModel.fromJson(json);
   }
 
   @override
   LogInEntity toEntity() {
-    return LogInEntity(
-        success: success,
-        message: message,
-        userModel:userModel
-        );
+    return LogInEntity(userModel: userModel);
   }
 }

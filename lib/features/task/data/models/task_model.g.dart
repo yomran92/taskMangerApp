@@ -17,10 +17,10 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TaskModel(
-      id: fields[0] as String?,
-      title: fields[1] as String?,
-      synced: fields[3] as bool?,
-      content: fields[2] as String?,
+      id: fields[0] as int?,
+      todo: fields[1] as String?,
+      completed: fields[2] as bool?,
+      userId: fields[3] as int?,
     );
   }
 
@@ -31,11 +31,11 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.title)
+      ..write(obj.todo)
       ..writeByte(2)
-      ..write(obj.content)
+      ..write(obj.completed)
       ..writeByte(3)
-      ..write(obj.synced);
+      ..write(obj.userId);
   }
 
   @override

@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -8,8 +7,7 @@ import 'package:todoapp/features/task/data/repositories/default_task_repository.
 import 'package:todoapp/features/task/domain/entities/get_task_entity.dart';
 import 'package:todoapp/features/task/domain/usecases/add_new_task_usecase.dart';
 
-class MockTodoRepository extends Mock
-    implements DefaultTaskRepository {}
+class MockTodoRepository extends Mock implements DefaultTaskRepository {}
 
 void main() {
   late AddNewTaskUsecase usecase;
@@ -19,20 +17,35 @@ void main() {
     mockTodoRepository = MockTodoRepository();
     usecase = AddNewTaskUsecase(mockTodoRepository);
   });
+  final taskModel =
+      TaskModel(id: 28, todo: "Go to the gym", completed: true, userId: 15);
 
-  final taskModel = TaskModel(id: '12', title: 't1', synced: false, content: 'c1');
-  final gettaskEntity = GetTaskEntity( id:'' ,title: '',content: '',synced: false);
+  final gettaskEntity =
+      GetTaskEntity(id: 28, todo: "Go to the gym", completed: true, userId: 15);
 
   test(
     'should add task ',
-        () async {
-          when(mockTodoRepository.addNewTask(AddTaskParams(body: AddTaskParamsBody(task: taskModel))))
-          .thenAnswer((_) async => Right(gettaskEntity));
-       final result = await usecase(AddTaskParams(body: AddTaskParamsBody(task: taskModel)));
-       expect(result, Right(gettaskEntity));
-       verify(mockTodoRepository.addNewTask(AddTaskParams(body: AddTaskParamsBody(task: taskModel))));
-       verifyNoMoreInteractions(mockTodoRepository);
+    () async {
+      when(mockTodoRepository.addNewTask(AddTaskParams(
+          body: AddTaskParamsBody(
+        completed: taskModel.completed,
+        todo: taskModel.todo,
+        userId: taskModel.userId,
+      )))).thenAnswer((_) async => Right(gettaskEntity));
+      final result = await usecase(AddTaskParams(
+          body: AddTaskParamsBody(
+        completed: taskModel.completed,
+        todo: taskModel.todo,
+        userId: taskModel.userId,
+      )));
+      expect(result, Right(gettaskEntity));
+      verify(mockTodoRepository.addNewTask(AddTaskParams(
+          body: AddTaskParamsBody(
+        completed: taskModel.completed,
+        todo: taskModel.todo,
+        userId: taskModel.userId,
+      ))));
+      verifyNoMoreInteractions(mockTodoRepository);
     },
   );
 }
-

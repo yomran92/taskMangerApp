@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -8,8 +7,7 @@ import 'package:todoapp/features/task/data/repositories/default_task_repository.
 import 'package:todoapp/features/task/domain/entities/get_task_entity.dart';
 import 'package:todoapp/features/task/domain/usecases/delete_task_usecase.dart';
 
-class MockTodoRepository extends Mock
-    implements DefaultTaskRepository {}
+class MockTodoRepository extends Mock implements DefaultTaskRepository {}
 
 void main() {
   late DeleteTaskUsecase usecase;
@@ -20,19 +18,23 @@ void main() {
     usecase = DeleteTaskUsecase(mockTodoRepository);
   });
 
-  final taskModel = TaskModel(id: '12', title: 't1', synced: false, content: 'c1');
-  final gettaskEntity = GetTaskEntity( id:'' ,title: '',content: '',synced: false);
+  final taskModel =
+      TaskModel(id: 28, todo: "Go to the gym", completed: true, userId: 15);
+  final gettaskEntity =
+      GetTaskEntity(id: 28, todo: "Go to the gym", completed: true, userId: 15);
 
   test(
     'should delete ',
-        () async {
-          when(mockTodoRepository.deleteTask(DeleteTaskParams(body: DeleteTaskParamsBody(id: taskModel.id??""))))
+    () async {
+      when(mockTodoRepository.deleteTask(DeleteTaskParams(
+              body: DeleteTaskParamsBody(id: taskModel.id ?? 0))))
           .thenAnswer((_) async => Right(gettaskEntity));
-       final result = await usecase(DeleteTaskParams(body: DeleteTaskParamsBody(id: taskModel.id??"")));
-       expect(result, Right(gettaskEntity));
-       verify(mockTodoRepository.deleteTask(DeleteTaskParams(body: DeleteTaskParamsBody(id: taskModel.id??""))));
-       verifyNoMoreInteractions(mockTodoRepository);
+      final result = await usecase(
+          DeleteTaskParams(body: DeleteTaskParamsBody(id: taskModel.id ?? 0)));
+      expect(result, Right(gettaskEntity));
+      verify(mockTodoRepository.deleteTask(
+          DeleteTaskParams(body: DeleteTaskParamsBody(id: taskModel.id ?? 0))));
+      verifyNoMoreInteractions(mockTodoRepository);
     },
   );
 }
-

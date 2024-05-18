@@ -1,24 +1,16 @@
 import 'package:equatable/equatable.dart';
 
 class GetTaskEntity extends Equatable {
-  final String? id;
+  int? id;
 
-  final String? title;
+  String? todo;
 
-  final String? content;
-  final bool? synced;
+  bool? completed;
 
-  GetTaskEntity(
-      {required this.id,
-      required this.title,
-      required this.content,
-      required this.synced});
+  int? userId;
+
+  GetTaskEntity({this.id, this.todo, this.completed, this.userId});
 
   @override
-  List<Object?> get props => [
-        id,
-        title,
-        content,
-        synced,
-      ];
+  List<Object?> get props => [id, todo, completed, userId];
 }

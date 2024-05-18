@@ -1,18 +1,12 @@
 import '../../../../../core/constants.dart';
 import '../../../../../core/params/params_model.dart';
 
-class DeleteTodoParams {
-  final String id;
-
-  DeleteTodoParams({required this.id});
-}
-
-class DeleteTaskParams extends ParamsModel<DeleteTaskParamsBody> {
+class GetTaskByIDParams extends ParamsModel<GetTaskByIDParamsBody> {
   @override
   Map<String, String>? get additionalHeaders => {};
 
   @override
-  RequestType? get requestType => RequestType.DELETE;
+  RequestType? get requestType => RequestType.GET;
 
   @override
   String? get url => 'todos/${body!.id}';
@@ -20,23 +14,19 @@ class DeleteTaskParams extends ParamsModel<DeleteTaskParamsBody> {
   @override
   Map<String, String> get urlParams => {};
 
-  DeleteTaskParams({DeleteTaskParamsBody? body})
+  GetTaskByIDParams({GetTaskByIDParamsBody? body})
       : super(body: body, baseUrl: BaseUrl);
 
   @override
   List<Object?> get props => [url, urlParams, requestType, body];
 }
 
-class DeleteTaskParamsBody extends BaseBodyModel {
+class GetTaskByIDParamsBody extends BaseBodyModel {
   final int id;
 
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-    };
+    return {};
   }
 
-  DeleteTaskParamsBody({
-    required this.id,
-  });
+  GetTaskByIDParamsBody({required this.id});
 }

@@ -7,7 +7,7 @@ import '../utils/common_sizes.dart';
 import 'custom_text.dart';
 
 class EmptyStateWidget extends StatelessWidget {
-  EmptyStateWidget({ required this.text, Key? key});
+  EmptyStateWidget({required this.text, Key? key});
 
   final String text;
 

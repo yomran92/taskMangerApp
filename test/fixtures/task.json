@@ -1,6 +1,6 @@
-[{
-  "id": "1",
-  "title": "test title" ,
-  "content": "test conten",
-  "sync": true
-}]
+{
+  "id": 28,
+  "todo": "Go to the gym",
+  "completed": false,
+  "userId": 15
+}

@@ -1,8 +1,5 @@
 import '../../../../../core/constants.dart';
 import '../../../../../core/params/params_model.dart';
-import '../task_model.dart';
-
-
 
 class AddTaskParams extends ParamsModel<AddTaskParamsBody> {
   @override
@@ -12,28 +9,36 @@ class AddTaskParams extends ParamsModel<AddTaskParamsBody> {
   RequestType? get requestType => RequestType.POST;
 
   @override
-  String? get url => '/api/users';
+  String? get url => 'todos/add';
 
   @override
   Map<String, String> get urlParams => {};
 
-  AddTaskParams({AddTaskParamsBody? body}) : super(body: body, baseUrl: BaseUrl);
+  AddTaskParams({AddTaskParamsBody? body})
+      : super(body: body, baseUrl: BaseUrl);
 
   @override
   List<Object?> get props => [url, urlParams, requestType, body];
 }
 
 class AddTaskParamsBody extends BaseBodyModel {
-  final TaskModel task;
+  String? todo;
 
+  bool? completed;
+
+  int? userId;
 
   Map<String, dynamic> toJson() {
     return {
-      'task': task,
-     };
+      'todo': todo,
+      'completed': completed,
+      'userId': userId,
+    };
   }
 
   AddTaskParamsBody({
-   required this.task,
-   });
+    required this.todo,
+    required this.completed,
+    required this.userId,
+  });
 }

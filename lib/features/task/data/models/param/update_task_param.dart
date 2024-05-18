@@ -1,10 +1,5 @@
-
-import 'package:todoapp/features/task/data/models/task_model.dart';
-
 import '../../../../../core/constants.dart';
 import '../../../../../core/params/params_model.dart';
-
-
 
 class UpdateTaskParams extends ParamsModel<UpdateTaskParamsBody> {
   @override
@@ -14,28 +9,30 @@ class UpdateTaskParams extends ParamsModel<UpdateTaskParamsBody> {
   RequestType? get requestType => RequestType.PUT;
 
   @override
-  String? get url => '/api/users';
+  String? get url => 'todos/${body!.taskId}';
 
   @override
   Map<String, String> get urlParams => {};
 
-  UpdateTaskParams({UpdateTaskParamsBody? body}) : super(body: body, baseUrl: BaseUrl);
+  UpdateTaskParams({UpdateTaskParamsBody? body})
+      : super(body: body, baseUrl: BaseUrl);
 
   @override
   List<Object?> get props => [url, urlParams, requestType, body];
 }
 
 class UpdateTaskParamsBody extends BaseBodyModel {
-  final TaskModel task;
-
+  final bool completed;
+  final int taskId;
 
   Map<String, dynamic> toJson() {
     return {
-      'task': task,
+      'completed': completed,
     };
   }
 
   UpdateTaskParamsBody({
-    required this.task,
+    required this.completed,
+    required this.taskId,
   });
 }

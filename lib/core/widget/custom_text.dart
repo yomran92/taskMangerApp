@@ -30,7 +30,7 @@ class CustomText extends StatelessWidget {
         alignment: alignmentGeometry,
         child: Text(
           text,
-          textAlign: textAlign??TextAlign.start,
+          textAlign: textAlign ?? TextAlign.start,
           strutStyle: StrutStyle(
               height: 1.2,
               forceStrutHeight: true,

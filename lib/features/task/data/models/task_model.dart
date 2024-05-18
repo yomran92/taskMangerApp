@@ -7,44 +7,39 @@ part 'task_model.g.dart';
 @HiveType(typeId: 0)
 class TaskModel {
   @HiveField(0)
-  String? id;
+  int? id;
   @HiveField(1)
-  String? title;
+  String? todo;
   @HiveField(2)
-  String? content;
+  bool? completed;
   @HiveField(3)
-  bool? synced;
-  TaskModel(
-      {required this.id,
-      required this.title,
-      required this.synced,
-      required this.content});
+  int? userId;
 
-  factory TaskModel.fromJson(Map<String, dynamic> json) {
-    return TaskModel(
-      id: json['id'] ?? '',
-      title: json['title'] ?? '',
-      synced: json['synced'] ?? false,
-      content: json['content'] ?? '',
-    );
+  TaskModel({this.id, this.todo, this.completed, this.userId});
+
+  TaskModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    todo = json['todo'];
+    completed = json['completed'];
+    userId = json['userId'];
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      "id": this.id,
-      "title": this.title,
-      "synced": this.synced,
-      "content": this.content
-    };
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['todo'] = this.todo;
+    data['completed'] = this.completed;
+    data['userId'] = this.userId;
+    return data;
   }
 
   @override
   GetTaskEntity toEntity() {
     return GetTaskEntity(
       id: id,
-      title: title,
-      content: content,
-      synced: synced,
+      todo: todo,
+      completed: completed,
+      userId: userId,
     );
   }
 }

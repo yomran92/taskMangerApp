@@ -4,43 +4,55 @@ import '../../domain/entities/get_all_task_entity.dart';
 import '../../domain/entities/get_task_entity.dart';
 import 'task_model.dart';
 
-
 part 'get_all_task_model.g.dart';
 
 @HiveType(typeId: 1)
 class GetAllTaskModel {
   @HiveField(0)
-  List<TaskModel>? taskList = [];
+  List<TaskModel>? todos;
 
-  GetAllTaskModel({required this.taskList});
+  @HiveField(1)
+  int? total;
+  @HiveField(2)
+  int? skip;
+  @HiveField(3)
+  int? limit;
 
-  factory GetAllTaskModel.fromJson(json) {
-    return GetAllTaskModel(taskList: json.toList().cast<TaskModel>());
+  GetAllTaskModel({this.todos, this.total, this.skip, this.limit});
+
+  GetAllTaskModel.fromJson(json) {
+    if (json['todos'] != null) {
+      todos = <TaskModel>[];
+      json['todos'].forEach((v) {
+        todos!.add(new TaskModel.fromJson(v));
+      });
+    }
+    total = json['total'];
+    skip = json['skip'];
+    limit = json['limit'];
   }
-  //
-  // factory GetAllTodoModel.fromSnapshot(
-  //     Map<String, dynamic> json) {
-  //   List<TodoModel>? todoListTmp = [];
-  //   if (json!= null) {
-  //     todoListTmp = <TodoModel>[];
-  //     json.forEach((v) {
-  //       todoListTmp!.add(  TodoModel.fromJson(v));
-  //     });
-  //   }
-  //
-  //   return GetAllTodoModel(todoList: todoListTmp);
-  // }
 
   Map<String, dynamic> toJson() {
-    return {"todoList": this.taskList!.map((v) => v.toJson()).toList()};
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.todos != null) {
+      data['todos'] = this.todos!.map((v) => v.toJson()).toList();
+    }
+    data['total'] = this.total;
+    data['skip'] = this.skip;
+    data['limit'] = this.limit;
+    return data;
   }
 
   @override
   GetAllTaskEntity toEntity() {
-    List<GetTaskEntity>? taskEntityList = [];
-    for (var a in taskList!) {
-      taskEntityList.add(a.toEntity());
+    List<GetTaskEntity> getTasksentities = [];
+    if (todos == null) {
+      todos = [];
     }
-    return GetAllTaskEntity(taskList: taskEntityList);
+    todos!.forEach((element) {
+      getTasksentities.add(element.toEntity());
+    });
+    return GetAllTaskEntity(
+        total: total, limit: limit, skip: skip, todos: getTasksentities);
   }
 }

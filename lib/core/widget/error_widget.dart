@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:todoapp/core/string_lbl.dart';
 
 import '../styles.dart';
 import 'custom_button.dart';
@@ -8,13 +10,11 @@ import 'custom_text.dart';
 class ErrorWidgetScreen extends StatelessWidget {
   final String message;
   final Function callBack;
-  final bool isRtl;
   final double? height;
   final double? width;
 
   const ErrorWidgetScreen(
       {required this.message,
-      required this.isRtl,
       required this.callBack,
       this.width,
       this.height,
@@ -24,8 +24,6 @@ class ErrorWidgetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // padding: EdgeInsets.symmetric(
-      //     horizontal: width * 0.05, vertical: height * 0.05),
       child: Center(
         child: Container(
             height: height,
@@ -36,7 +34,7 @@ class ErrorWidgetScreen extends StatelessWidget {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Styles.colorBackgroundContanier, //.withOpacity(0.5),
+                  color: Styles.colorPrimary.withOpacity(0.1),
                   spreadRadius: 2,
                   blurRadius: 5,
                 ),
@@ -48,12 +46,17 @@ class ErrorWidgetScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 // // SizedBox(height: height*0.2,),
-                CustomText(
+
+                Center(
+                    child: CustomText(
                   text: message ?? "",
-                  style: Styles.w500TextStyle()
-                      .copyWith(color: Styles.colorTextError),
-                  textAlign: TextAlign.start,
-                ),
+                  style: Styles.w500TextStyle().copyWith(
+                    fontSize: 16.sp,
+                    color: Styles.colorTextError,
+                  ),
+                  textAlign: TextAlign.center,
+                  alignmentGeometry: Alignment.center,
+                )),
 
                 Container(
                   // padding: EdgeInsets.symmetric(vertical: 20.w,horizontal: 20.w),
@@ -62,7 +65,7 @@ class ErrorWidgetScreen extends StatelessWidget {
 
                   child: CustomButton(
                     height: (height ?? 25) * 0.2,
-                    text: "reload",
+                    text: StringLbl.reload,
                     style: Styles.w500TextStyle().copyWith(
                         color: Styles.colorTextWhite, fontSize: 20.sp),
                     textAlign: TextAlign.center,

@@ -9,7 +9,7 @@ class LogInParams extends ParamsModel<LogInParamsBody> {
   RequestType? get requestType => RequestType.POST;
 
   @override
-  String? get url => '/api/login';
+  String? get url => 'auth/login';
 
   @override
   Map<String, String> get urlParams => {};
@@ -21,18 +21,18 @@ class LogInParams extends ParamsModel<LogInParamsBody> {
 }
 
 class LogInParamsBody extends BaseBodyModel {
-  final String? email;
+  final String? username;
   final String? password;
 
   Map<String, dynamic> toJson() {
     return {
-      'email': email,
+      'username': username,
       'password': password,
     };
   }
 
   LogInParamsBody({
-    this.email,
+    this.username,
     this.password,
   });
 }

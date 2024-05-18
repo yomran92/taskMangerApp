@@ -1,10 +1,10 @@
 import 'dart:io';
 
- import 'package:get_it/get_it.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'package:todoapp/core/state/appstate.dart';
- import 'package:todoapp/core/utils/hive_paramter.dart';
+import 'package:todoapp/core/utils/hive_paramter.dart';
 import 'package:todoapp/features/account/data/remote/data_sources/account_remote_data_source.dart';
 import 'package:todoapp/features/account/data/remote/models/responses/user_model.dart';
 import 'package:todoapp/features/account/data/repositories/account_repository.dart';
@@ -23,7 +23,6 @@ import 'features/task/domain/usecases/get_all_task_usecase.dart';
 import 'features/task/domain/usecases/update_task_usecase.dart';
 import 'features/task/presentation/bloc/task_bloc.dart';
 
-
 final sl = GetIt.instance;
 
 Future<void> init() async {
@@ -41,8 +40,7 @@ Future<void> init() async {
     return hive;
   });
 
-  sl.registerFactory(
-      () => HiveParamter(path: directory.path, hive: sl()));
+  sl.registerFactory(() => HiveParamter(path: directory.path, hive: sl()));
   sl.registerLazySingleton(() => TaskBloc());
   sl.registerLazySingleton(() => AccountBloc());
 
@@ -50,16 +48,14 @@ Future<void> init() async {
   sl.registerLazySingleton(() => AppStateModel());
 
   // Data sources
-   sl.registerLazySingleton(
-      () => TaskRemoteDataSource(sl(),));
-  sl.registerLazySingleton(
-      () => AccountRemoteDataSource(sl()));
+  sl.registerLazySingleton(() => TaskRemoteDataSource(
+        sl(),
+      ));
+  sl.registerLazySingleton(() => AccountRemoteDataSource(sl()));
 
   // Repositories
-  sl.registerLazySingleton<TaskRepository>(
-      () => DefaultTaskRepository(sl()));
-  sl.registerLazySingleton(
-      () => AccountRepository(sl()));
+  sl.registerLazySingleton<TaskRepository>(() => DefaultTaskRepository(sl()));
+  sl.registerLazySingleton(() => AccountRepository(sl()));
 
   // Usecases
   sl.registerLazySingleton(() => UpdateTaskUsecase(sl()));
@@ -67,7 +63,4 @@ Future<void> init() async {
   sl.registerLazySingleton(() => AddNewTaskUsecase(sl()));
   sl.registerLazySingleton(() => GetAllTaskUsecase(sl()));
   sl.registerLazySingleton(() => LogInUseCase(sl()));
-
-
-
 }

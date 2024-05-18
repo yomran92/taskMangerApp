@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/error/exceptions.dart';
-import '../../../../core/error/failures.dart';
+import '../../../../core/error/app_exceptions.dart';
+import '../../../../core/error/error_entity.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/repositories/iaccount_repository.dart';
 import '../remote/data_sources/account_remote_data_source.dart';
@@ -14,12 +14,16 @@ class AccountRepository implements IAccountRepository {
   AccountRepository(this.remoteDataSource);
 
   @override
-  Future<Either<Failure, LogInEntity>> logIn(LogInParams model) async {
+  Future<Either<ErrorEntity, LogInEntity>> logIn(LogInParams model) async {
     try {
       final LogInModel remote = await remoteDataSource.logIn(model);
       return Right(remote.toEntity());
-    } on CacheException {
-      return Left(CacheFailure());
+    } on AppException catch (e) {
+      print(e);
+      return Left(ErrorEntity.fromException(e));
+    } catch (e) {
+      print(e);
+      return Left(ErrorEntity(e.toString()));
     }
   }
 }

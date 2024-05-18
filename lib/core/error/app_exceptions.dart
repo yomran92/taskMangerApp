@@ -1,9 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-class ServerException implements Exception {}
-
-class CacheException implements Exception {}
-
 class AppException extends Equatable implements Exception {
   final _message;
 
@@ -56,6 +52,10 @@ class InvalidInputException extends AppException {
 class ServerErrorException extends AppException {
   ServerErrorException({String? message, data})
       : super(data, message = 'Server Error');
+}
+
+class CacheException extends AppException {
+  CacheException({String? message, data}) : super(data, message = 'Cash Error');
 }
 
 class SessionTimedOutException extends AppException {

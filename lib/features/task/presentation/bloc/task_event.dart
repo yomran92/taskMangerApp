@@ -17,21 +17,10 @@ class ResetBlocEvent extends TaskEvent {
       ];
 }
 
-class LoadTaskEvent extends TaskEvent {
-  // final String username;
+class GetTaskByIDEvent extends TaskEvent {
+  final GetTaskByIDParams params;
 
-  LoadTaskEvent(// this.username
-      );
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [
-        // username
-      ];
-}
-
-class SyncTaskEvent extends TaskEvent {
-  SyncTaskEvent();
+  GetTaskByIDEvent({required this.params});
 
   @override
   // TODO: implement props
@@ -41,9 +30,10 @@ class SyncTaskEvent extends TaskEvent {
 }
 
 class GetAllTaskEvent extends TaskEvent {
-  final int? pageNumber;
+  final GetAllTaskParams params;
 
-  GetAllTaskEvent({required  this.pageNumber
+  GetAllTaskEvent({
+    required this.params,
   });
 
   @override
@@ -54,31 +44,31 @@ class GetAllTaskEvent extends TaskEvent {
 }
 
 class AddNewTaskEvent extends TaskEvent {
-  final TaskModel task;
+  final AddTaskParams addTaskParams;
 
-  AddNewTaskEvent(this.task);
+  AddNewTaskEvent({required this.addTaskParams});
 
   @override
   // TODO: implement props
-  List<Object?> get props => [task];
+  List<Object?> get props => [addTaskParams];
 }
 
 class DeleteTaskEvent extends TaskEvent {
-  final String id;
+  final DeleteTaskParams params;
 
-  DeleteTaskEvent(this.id);
+  DeleteTaskEvent({required this.params});
 
   @override
   // TODO: implement props
-  List<Object?> get props => [id];
+  List<Object?> get props => [params];
 }
 
 class UpdateTaskEvent extends TaskEvent {
-  final TaskModel taskModel;
+  final UpdateTaskParams updateTaskParams;
 
-  UpdateTaskEvent(this.taskModel);
+  UpdateTaskEvent(this.updateTaskParams);
 
   @override
   // TODO: implement props
-  List<Object?> get props => [taskModel];
+  List<Object?> get props => [updateTaskParams];
 }

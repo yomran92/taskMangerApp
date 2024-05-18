@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import "package:flutter_test/flutter_test.dart";
+import 'package:todoapp/features/task/data/models/get_all_task_model.dart';
 import 'package:todoapp/features/task/data/models/task_model.dart';
 
 import '../../../../fixtures/fixture.dart';
 
 void main() {
-   final taskModel = TaskModel(id: '12', title: 't1', synced: false, content: 'c1');
+  final taskModel =
+      TaskModel(id: 28, todo: "Go to the gym", completed: true, userId: 15);
 
   test(
     'should be a subclass  ',
@@ -21,16 +23,14 @@ void main() {
       'should return a valid model ',
       () async {
         //arrange
-        final Map<String, dynamic> jsonMap =
-            json.decode(fixture('task.json'));
+        final Map<String, dynamic> jsonMap = json.decode(fixture('task.json'));
         //act
-        final result = TaskModel.fromJson(jsonMap);
+        final result = GetAllTaskModel.fromJson(jsonMap);
 
         // assert
         expect(result, taskModel);
       },
     );
-
   });
 
   group('toJson', () {
@@ -41,11 +41,11 @@ void main() {
         final result = taskModel.toJson();
 
         // assert
-        final expectedJsonMap ={
-          "id": "1",
-          "title": "test title" ,
-          "content": "test conten",
-          "sync": true
+        final expectedJsonMap = {
+          "id": 28,
+          "todo": "Go to the gym",
+          "completed": false,
+          "userId": 15
         };
         expect(result, expectedJsonMap);
       },

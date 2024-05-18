@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart';
 
-import '../error/exceptions.dart';
+import '../error/app_exceptions.dart';
 
 class HelperFunction {
   static void showToast(String mes) {
@@ -13,7 +13,7 @@ class HelperFunction {
     Fluttertoast.showToast(
         msg: mes,
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         textColor: Colors.white,
         fontSize: 16.0);

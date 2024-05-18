@@ -1,8 +1,7 @@
-
 import '../../../../../core/constants.dart';
 import '../../../../../core/params/params_model.dart';
-
-
+import '../../../../../core/state/appstate.dart';
+import '../../../../../service_locator.dart';
 
 class GetAllTaskParams extends ParamsModel<GetAllTaskParamsBody> {
   @override
@@ -12,28 +11,28 @@ class GetAllTaskParams extends ParamsModel<GetAllTaskParamsBody> {
   RequestType? get requestType => RequestType.GET;
 
   @override
-  String? get url => '/api/users';
+  String? get url => 'todos/user/${sl<AppStateModel>().user!.id}';
 
   @override
   Map<String, String> get urlParams => {
-     'page': body!.pageNumber.toString()
-  };
+        'limit': body!.limit.toString(),
+        'skip': body!.skip.toString(),
+      };
 
-  GetAllTaskParams({GetAllTaskParamsBody? body}) : super(body: body, baseUrl: BaseUrl);
+  GetAllTaskParams({GetAllTaskParamsBody? body})
+      : super(body: body, baseUrl: BaseUrl);
 
   @override
   List<Object?> get props => [url, urlParams, requestType, body];
 }
 
 class GetAllTaskParamsBody extends BaseBodyModel {
-
-  final int? pageNumber;
+  final int? limit;
+  final int? skip;
 
   Map<String, dynamic> toJson() {
-    return {
-      };
+    return {};
   }
 
-  GetAllTaskParamsBody({required this.pageNumber}
-    );
+  GetAllTaskParamsBody({required this.skip, required this.limit});
 }

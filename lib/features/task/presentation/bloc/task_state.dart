@@ -24,14 +24,14 @@ class TaskError extends TaskState {
 }
 
 class GetAllTaskLoadedState extends TaskState {
-  final List<GetTaskEntity> tasks;
+  final List<GetTaskEntity>? tasks;
+  final int? total;
+  final int? skip;
+  final int? limit;
 
-  // final String username;
-
-  GetAllTaskLoadedState(
-    this.tasks,
-    // this.username,
-  );
+  GetAllTaskLoadedState({this.tasks, this.skip, this.limit, this.total}
+      // this.username,
+      );
 
   @override
   // TODO: implement props
@@ -41,8 +41,21 @@ class GetAllTaskLoadedState extends TaskState {
       ];
 }
 
+class GetTaskByIDLoadedState extends TaskState {
+  final GetTaskEntity? task;
+
+  GetTaskByIDLoadedState({this.task});
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+        task,
+        // this.username,
+      ];
+}
+
 class AddNewTaskState extends TaskState {
-  final TaskModel  task;
+  final GetTaskEntity task;
 
   AddNewTaskState(
     this.task,
@@ -57,21 +70,21 @@ class AddNewTaskState extends TaskState {
 }
 
 class DeleteTaskState extends TaskState {
-  final String id;
+  final GetTaskEntity taskModel;
 
   DeleteTaskState(
-    this.id,
+    this.taskModel,
   );
 
   @override
   // TODO: implement props
   List<Object?> get props => [
-        id,
+        taskModel,
       ];
 }
 
 class UpdateTaskState extends TaskState {
-  final TaskModel taskModel;
+  final GetTaskEntity taskModel;
 
   UpdateTaskState(this.taskModel);
 

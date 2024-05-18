@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todoapp/features/task/domain/entities/get_task_entity.dart';
+import 'package:todoapp/features/task/presentation/components/task_detail_widget.dart';
 
 import '../../../../core/styles.dart';
 import 'edite_task_screen.dart';
 
-
 class TaskDetailScreen extends StatelessWidget {
-  final GetTaskEntity ? task;
+  final GetTaskEntity? task;
 
   TaskDetailScreen({Key? key, this.task}) : super(key: key);
   ValueNotifier<bool> isEditable = ValueNotifier(false);
@@ -21,27 +21,24 @@ class TaskDetailScreen extends StatelessWidget {
           icon: Icon(Icons.arrow_back, color: Styles.colorTextWhite),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text("task",style: Styles.w700TextStyle().copyWith(
-
-            fontSize: 20.sp,
-            color: Styles.colorTextWhite)),
+        title: Text("task",
+            style: Styles.w700TextStyle()
+                .copyWith(fontSize: 20.sp, color: Styles.colorTextWhite)),
         actions: [
-           InkWell(
+          InkWell(
               onTap: () {
                 isEditable.value = !isEditable.value;
               },
               child: ValueListenableBuilder<bool>(
                   valueListenable: isEditable,
                   builder: (context, isEditable, widget) {
-                    return
-                      Container(
-                          padding: EdgeInsets.symmetric(horizontal: 12.w),
-                          child:
-                      Icon(
-                      size: 32.r,
-                      isEditable ? Icons.preview : Icons.edit,
-                      color: Styles.colorTextWhite,
-                    ));
+                    return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 12.w),
+                        child: Icon(
+                          size: 32.r,
+                          isEditable ? Icons.preview : Icons.edit,
+                          color: Styles.colorTextWhite,
+                        ));
                   }))
         ],
       ),
@@ -54,45 +51,7 @@ class TaskDetailScreen extends StatelessWidget {
                 valueListenable: isEditable,
                 builder: (context, isEditable, widget) {
                   return !isEditable
-                      ? Column(
-                          children: [
-                            Card(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 12.h),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Title: ",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Expanded(child: Text(task!.title!))
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Card(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 12.h),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Content: ",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Expanded(
-                                        child: Text(
-                                      task!.content!,
-                                    ))
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
-                        )
+                      ? TaskDetailWidget(id: task!.id)
                       : EditeTaskScreen(task: task);
                 })),
       ),

@@ -17,16 +17,25 @@ class GetAllTaskModelAdapter extends TypeAdapter<GetAllTaskModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return GetAllTaskModel(
-      taskList: (fields[0] as List?)?.cast<TaskModel>(),
+      todos: (fields[0] as List?)?.cast<TaskModel>(),
+      total: fields[1] as int?,
+      skip: fields[2] as int?,
+      limit: fields[3] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, GetAllTaskModel obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.taskList);
+      ..write(obj.todos)
+      ..writeByte(1)
+      ..write(obj.total)
+      ..writeByte(2)
+      ..write(obj.skip)
+      ..writeByte(3)
+      ..write(obj.limit);
   }
 
   @override

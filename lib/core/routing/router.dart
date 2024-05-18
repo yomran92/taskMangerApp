@@ -13,7 +13,7 @@ class AppRouter {
 
       case RoutePaths.splashPage:
         return MaterialPageRoute(builder: (_) => SplashScreen());
-  case RoutePaths.TaskScreen:
+      case RoutePaths.TaskScreen:
         return MaterialPageRoute(builder: (_) => TaskScreen());
 
       default:

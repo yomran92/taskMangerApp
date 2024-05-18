@@ -1,11 +1,7 @@
 import 'package:dartz/dartz.dart';
 
-import '../error/failures.dart';
+import '../error/error_entity.dart';
 
 abstract class Usecase<Type, Params> {
-  Future<Either<Failure, Type>> call(Params params);
-}
-
-abstract class UseCaseWithoutParams<Type> {
-  Future<Either<Failure, Type>> call();
+  Future<Either<ErrorEntity, Type>> call(Params params);
 }

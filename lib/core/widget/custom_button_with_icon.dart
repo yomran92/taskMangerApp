@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'custom_text.dart';
-
 class CustomButtonWithIcon extends StatelessWidget {
   final Icon icon;
 
@@ -12,11 +10,9 @@ class CustomButtonWithIcon extends StatelessWidget {
 
   const CustomButtonWithIcon(
       {required this.icon,
-        this.height,
-
+      this.height,
       this.width,
       required this.onPressed,
-
       Key? key})
       : super(key: key);
 
@@ -29,9 +25,9 @@ class CustomButtonWithIcon extends StatelessWidget {
       child: Container(
           width: width,
           height: height,
-        padding:   EdgeInsets.symmetric(horizontal: 16.w),
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Center(
-            child:  icon,
+            child: icon,
           )),
     );
   }
