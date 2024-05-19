@@ -67,10 +67,15 @@ class TaskWidget extends StatelessWidget {
                         color: Styles.colorPrimary.withOpacity(0.8),
                       ),
                       onPressed: () {
-                        sl<TaskBloc>().add(DeleteTaskEvent(
-                            params: DeleteTaskParams(
-                                body:
-                                    DeleteTaskParamsBody(id: task!.id ?? 0))));
+                        if((task!.id??0) >150){
+                          HelperFunction.showToast(StringLbl.localTask);
+
+                        }else {
+                          sl<TaskBloc>().add(DeleteTaskEvent(
+                              params: DeleteTaskParams(
+                                  body:
+                                  DeleteTaskParamsBody(id: task!.id ?? 0))));
+                        }
                       })
                 ],
               )),
