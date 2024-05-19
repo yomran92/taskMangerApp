@@ -41,7 +41,6 @@ class _SplashcreenState extends State<SplashScreen> {
     super.didChangeDependencies();
   }
 
-  bool isRtl = false;
 
   @override
   Widget build(BuildContext context) {
