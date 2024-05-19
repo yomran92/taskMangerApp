@@ -6,4 +6,4 @@ enum RequestType { GET, POST, PUT, DELETE }
 // api requests types
 enum ParametersType { Body, Url }
 
-const int Pagelimit = 3;
+const int Pagelimit = 10;
