@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Task manager app with Login (email and password)
+Task manager app with Login (username and password)
 
 - change BaseUrl in constants.dart to connect to you server
 - offlin/ online mode
