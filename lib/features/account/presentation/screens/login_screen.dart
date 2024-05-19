@@ -204,12 +204,16 @@ class _LogInScreenState extends State<LogInScreen> {
               alignmentDirectional: AlignmentDirectional.center,
               onPressed: () async {
                 FocusManager.instance.primaryFocus?.unfocus();
+    if(!_usernameKey.currentState!.validate()){
 
-                if (!Validators.isNotEmptyString(_usernameController.text)) {
+                // if (!Validators.isNotEmptyString(_usernameController.text)) {
                   HelperFunction.showToast(
                       "${StringLbl.validationMessage} ${StringLbl.userName}");
                 }
-                if (!Validators.isNotEmptyString(_passwordController.text)) {
+                else
+    if(!_passwordKey.currentState!.validate()){
+
+      // if (!Validators.isNotEmptyString(_passwordController.text)) {
                   HelperFunction.showToast(
                       "${StringLbl.validationMessage} ${StringLbl.password}");
                 } else {
