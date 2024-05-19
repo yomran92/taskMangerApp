@@ -16,4 +16,6 @@ class StringLbl {
   static String reload = 'reload';
   static String task = 'Task';
   static String localTask = 'not able to see detail its virtual task';
+  static String noDataFound = 'no data found add some task';
+  static String insertTask = 'Insert Task';
 }

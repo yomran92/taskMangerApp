@@ -248,7 +248,7 @@ class _TaskScreenState extends State<TaskScreen> {
                               },
                               child: getAllTaskLoadedState == null
                                   ? EmptyStateWidget(
-                                      text: 'no data found add some task',
+                                      text: StringLbl.noDataFound,
                                     )
                                   : ListView.separated(
                                       itemCount:

@@ -62,7 +62,7 @@ class _InsertTaskScreenState extends State<InsertTaskScreen> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
-          "Insert Task",
+          StringLbl.insertTask,
           style: Styles.w700TextStyle()
               .copyWith(fontSize: 20.sp, color: Styles.colorTextWhite),
         ),
@@ -75,8 +75,8 @@ class _InsertTaskScreenState extends State<InsertTaskScreen> {
                     child: Center(
                         child: CustomText(
                             text: result != ConnectivityResult.none
-                                ? 'online'
-                                : 'offline',
+                                ? StringLbl.online
+                                : StringLbl.offline,
                             style: Styles.w700TextStyle().copyWith(
                                 fontSize: 12.sp,
                                 color: Styles.colorTextWhite))));
@@ -114,7 +114,7 @@ class _InsertTaskScreenState extends State<InsertTaskScreen> {
           children: [
             Expanded(
                 child: CustomText(
-              text: "is completed: ",
+              text:StringLbl.isCompleted,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
@@ -184,8 +184,8 @@ class _InsertTaskScreenState extends State<InsertTaskScreen> {
                 alignmentDirectional: AlignmentDirectional.center,
                 onPressed: () async {
                   FocusManager.instance.primaryFocus?.unfocus();
-
-                  if (!Validators.isNotEmptyString(_contentController.text)) {
+if(!_contentKey.currentState!.validate()){
+                  // if (!Validators.isNotEmptyString(_contentController.text)) {
                     HelperFunction.showToast(
                         '${StringLbl.validationMessage} ${StringLbl.todo} ');
                   } else {
@@ -223,7 +223,7 @@ class _InsertTaskScreenState extends State<InsertTaskScreen> {
           .copyWith(fontSize: 16.sp, color: Styles.colorTextTextField),
       textAlign: TextAlign.left,
       focusNode: _contentFocusNode,
-      hintText: "todo",
+      hintText:StringLbl.todo,
       minLines: 1,
       onChanged: (String value) {
         if (_contentKey.currentState!.validate()) {}

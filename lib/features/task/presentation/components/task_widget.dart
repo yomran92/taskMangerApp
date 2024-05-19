@@ -60,17 +60,20 @@ class TaskWidget extends StatelessWidget {
                     numOfLine: 2,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )),
-                  IconButton(
+            if((task!.id??0) <=150)
+      IconButton(
                       icon: Icon(
                         Icons.delete,
                         size: 20,
                         color: Styles.colorPrimary.withOpacity(0.8),
                       ),
                       onPressed: () {
-                        sl<TaskBloc>().add(DeleteTaskEvent(
-                            params: DeleteTaskParams(
-                                body:
-                                    DeleteTaskParamsBody(id: task!.id ?? 0))));
+
+                          sl<TaskBloc>().add(DeleteTaskEvent(
+                              params: DeleteTaskParams(
+                                  body:
+                                  DeleteTaskParamsBody(id: task!.id ?? 0))));
+
                       })
                 ],
               )),
